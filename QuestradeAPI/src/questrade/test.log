@@ -1,0 +1,116 @@
+01/14/2017 02:52:50 PM - ----------Start of CLASSTEST
+01/14/2017 02:53:31 PM - ----------Start of CLASSTEST
+01/14/2017 02:54:21 PM - ----------Start of CLASSTEST
+01/14/2017 02:54:56 PM - ----------Start of CLASSTEST
+01/14/2017 02:55:34 PM - ----------Start of CLASSTEST
+01/14/2017 02:55:50 PM - ----------Start of CLASSTEST
+01/14/2017 02:56:21 PM - ----------Start of CLASSTEST
+01/14/2017 02:58:05 PM - ----------Start of CLASSTEST
+01/14/2017 02:58:08 PM - get_token() returned new token to <Response [200]> - {u'api_server': u'https://api01.iq.questrade.com/', u'access_token': u'dRHLo5ygajz4w7aYC-9IAMGNlfUjndo50', u'expires_in': 1800, 'expires_at': '2017-01-14 17:27:08.448000-05:00', u'token_type': u'Bearer', u'refresh_token': u'm5T83iy6FACvWgio_D8bwOogpLbR-fpH0'}
+01/14/2017 02:58:09 PM - Account Limit Remaining:29998 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 02:58:11 PM - Market Data Limit Remaining:14999 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:17:30 PM - ----------Start of CLASSTEST
+01/14/2017 03:17:35 PM - Account Limit Remaining:29991 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:17:36 PM - Market Data Limit Remaining:14998 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:18:05 PM - ----------Start of CLASSTEST
+01/14/2017 03:18:06 PM - Account Limit Remaining:29984 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:18:09 PM - Market Data Limit Remaining:14997 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:34:17 PM - ----------Start of CLASSTEST
+01/14/2017 03:34:20 PM - get_token() returned new token to <Response [200]> - {u'api_server': u'https://api01.iq.questrade.com/', u'access_token': u'aI99R32xmph3RuWuRAB6MyB7EZ0X2xAH0', u'expires_in': 1800, 'expires_at': '2017-01-14 18:03:20.607000-05:00', u'token_type': u'Bearer', u'refresh_token': u'CKO2PjMGADvCmtDL32Ae6XIUOAbkV2jx0'}
+01/14/2017 03:34:21 PM - Account Limit Remaining:29976 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:34:22 PM - Market Data Limit Remaining:14996 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:39:08 PM - ----------Start of CLASSTEST
+01/14/2017 03:39:09 PM - Account Limit Remaining:29969 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:39:10 PM - Market Data Limit Remaining:14995 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:40:12 PM - ----------Start of CLASSTEST
+01/14/2017 03:40:13 PM - Account Limit Remaining:29961 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:40:14 PM - Market Data Limit Remaining:14994 resetting at 2017-01-14T17:41:52-05:00
+01/14/2017 03:42:58 PM - ----------Start of CLASSTEST
+01/14/2017 03:42:59 PM - Account Limit Remaining:29962 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:43:01 PM - Market Data Limit Remaining:14994 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:47:57 PM - ----------Start of CLASSTEST
+01/14/2017 03:47:58 PM - Account Limit Remaining:29955 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:47:59 PM - Market Data Limit Remaining:14993 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:48:47 PM - ----------Start of CLASSTEST
+01/14/2017 03:48:49 PM - Account Limit Remaining:29948 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:48:50 PM - Market Data Limit Remaining:14992 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:49:49 PM - ----------Start of CLASSTEST
+01/14/2017 03:49:51 PM - Account Limit Remaining:29941 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:49:52 PM - Market Data Limit Remaining:14991 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:50:04 PM - ----------Start of CLASSTEST
+01/14/2017 03:50:05 PM - Account Limit Remaining:29934 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:50:06 PM - Market Data Limit Remaining:14990 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:52:24 PM - ----------Start of CLASSTEST
+01/14/2017 03:52:26 PM - Account Limit Remaining:29927 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:52:27 PM - Market Data Limit Remaining:14989 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:53:10 PM - ----------Start of CLASSTEST
+01/14/2017 03:53:11 PM - Account Limit Remaining:29920 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:53:13 PM - Market Data Limit Remaining:14988 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:53:34 PM - ----------Start of CLASSTEST
+01/14/2017 03:53:34 PM - Account Limit Remaining:29913 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:53:36 PM - Market Data Limit Remaining:14987 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:55:03 PM - ----------Start of CLASSTEST
+01/14/2017 03:55:04 PM - Account Limit Remaining:29906 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:55:05 PM - Market Data Limit Remaining:14986 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:55:50 PM - ----------Start of CLASSTEST
+01/14/2017 03:55:51 PM - Account Limit Remaining:29899 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:55:52 PM - Market Data Limit Remaining:14985 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:57:29 PM - ----------Start of CLASSTEST
+01/14/2017 03:57:30 PM - Account Limit Remaining:29892 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:57:31 PM - Market Data Limit Remaining:14984 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:59:08 PM - ----------Start of CLASSTEST
+01/14/2017 03:59:12 PM - Account Limit Remaining:29885 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 03:59:13 PM - Market Data Limit Remaining:14983 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:00:23 PM - ----------Start of CLASSTEST
+01/14/2017 04:00:24 PM - Account Limit Remaining:29878 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:00:26 PM - Market Data Limit Remaining:14982 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:01:19 PM - ----------Start of CLASSTEST
+01/14/2017 04:01:20 PM - Account Limit Remaining:29871 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:01:21 PM - Market Data Limit Remaining:14981 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:01:39 PM - ----------Start of CLASSTEST
+01/14/2017 04:01:40 PM - Account Limit Remaining:29864 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:01:41 PM - Market Data Limit Remaining:14980 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:02:12 PM - ----------Start of CLASSTEST
+01/14/2017 04:02:12 PM - Account Limit Remaining:29857 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:02:14 PM - Market Data Limit Remaining:14979 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:07:16 PM - ----------Start of CLASSTEST
+01/14/2017 04:07:19 PM - get_token() returned new token to <Response [200]> - {u'api_server': u'https://api01.iq.questrade.com/', u'access_token': u'z4IqURcrny4RAJyiP70FnZL5ud2xmNK60', u'expires_in': 1800, 'expires_at': '2017-01-14 18:36:19.587000-05:00', u'token_type': u'Bearer', u'refresh_token': u'q8UAneCyDcQUuiv5IdxM-rwRaDdPlzc70'}
+01/14/2017 04:07:20 PM - Account Limit Remaining:29849 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:07:21 PM - Market Data Limit Remaining:14978 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:07:58 PM - ----------Start of CLASSTEST
+01/14/2017 04:07:58 PM - Account Limit Remaining:29842 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:08:00 PM - Market Data Limit Remaining:14977 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:08:54 PM - ----------Start of CLASSTEST
+01/14/2017 04:08:54 PM - Account Limit Remaining:29835 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:08:56 PM - Market Data Limit Remaining:14976 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:09:14 PM - ----------Start of CLASSTEST
+01/14/2017 04:09:15 PM - Account Limit Remaining:29828 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:09:17 PM - Market Data Limit Remaining:14975 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:10:12 PM - ----------Start of CLASSTEST
+01/14/2017 04:10:12 PM - Account Limit Remaining:29821 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:10:14 PM - Market Data Limit Remaining:14974 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:10:50 PM - ----------Start of CLASSTEST
+01/14/2017 04:10:51 PM - Account Limit Remaining:29814 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:10:52 PM - Market Data Limit Remaining:14973 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:11:46 PM - ----------Start of CLASSTEST
+01/14/2017 04:11:47 PM - Account Limit Remaining:29807 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:11:49 PM - Market Data Limit Remaining:14972 resetting at 2017-01-14T18:11:52-05:00
+01/14/2017 04:12:34 PM - ----------Start of CLASSTEST
+01/14/2017 04:12:35 PM - Account Limit Remaining:29837 resetting at 2017-01-14T18:41:52-05:00
+01/14/2017 04:12:37 PM - Market Data Limit Remaining:14976 resetting at 2017-01-14T18:41:52-05:00
+01/14/2017 04:14:01 PM - ----------Start of CLASSTEST
+01/14/2017 04:14:02 PM - Account Limit Remaining:29830 resetting at 2017-01-14T18:41:52-05:00
+01/14/2017 04:14:04 PM - Market Data Limit Remaining:14975 resetting at 2017-01-14T18:41:52-05:00
+01/14/2017 04:57:13 PM - ----------Start of CLASSTEST
+01/14/2017 04:57:16 PM - get_token() returned new token to <Response [200]> - {u'api_server': u'https://api01.iq.questrade.com/', u'access_token': u'L69LE5jG7qsl7BFFcy0RDgQlxgA4wHbh0', u'expires_in': 1800, 'expires_at': '2017-01-14 19:26:16.213000-05:00', u'token_type': u'Bearer', u'refresh_token': u'rML2hT1s4OZFufl6mDzMVeA7e5UUAMQg0'}
+01/14/2017 04:57:17 PM - Account Limit Remaining:29981 resetting at 2017-01-14T19:11:52-05:00
+01/14/2017 04:57:18 PM - Market Data Limit Remaining:14997 resetting at 2017-01-14T19:11:52-05:00
+01/14/2017 05:31:37 PM - ----------Start of CLASSTEST
+01/14/2017 05:32:02 PM - get_token() returned new token to <Response [200]> - {u'api_server': u'https://api01.iq.questrade.com/', u'access_token': u'thW100kEsfIvAEmi-JFYwN2YBZ0RhYLV0', u'expires_in': 1800, 'expires_at': '2017-01-14 20:01:02.459000-05:00', u'token_type': u'Bearer', u'refresh_token': u'w98_RRRHkjgDABblWIFpBo4pw1XmBJHQ0'}
+01/14/2017 05:32:45 PM - ----------Start of CLASSTEST
+01/14/2017 05:33:14 PM - ----------Start of CLASSTEST
+01/14/2017 05:33:47 PM - ----------Start of CLASSTEST
+01/14/2017 05:36:01 PM - ----------Start of CLASSTEST
+01/14/2017 05:36:03 PM - get_token() returned new token to <Response [200]> - {u'api_server': u'https://api01.iq.questrade.com/', u'access_token': u'a4WwOq0BPpgRO1dUs92naGf-AOABwx9C0', u'expires_in': 1800, 'expires_at': '2017-01-14 20:05:03.022000-05:00', u'token_type': u'Bearer', u'refresh_token': u'Y_mE8R3zjxEkhWtZTupqDACSFPe0Tt_s0'}
+01/14/2017 05:36:03 PM - Account Limit Remaining:29989 resetting at 2017-01-14T19:41:52-05:00
+01/14/2017 05:36:04 PM - Market Data Limit Remaining:14998 resetting at 2017-01-14T19:41:52-05:00
