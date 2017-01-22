@@ -17,70 +17,77 @@ import src.questrade.enums.urls as urls
 
 class AccountList():
     
-    
+
     def __init__(self):
-        # set all attribute lists up (null)
-        self.status = []
-        self.isBilling = []
-        self.number = []
-        self.isPrimary = []
-        self.type = []
-        self.clientAccountType = []
-        self.name = []
+        #=======================================================================
+        # # set all attribute lists up and get token
+        #=======================================================================
+        self.status = []                # enums.AccountStatus
+        self.isBilling = []             # bool
+        self.number = []                # account number
+        self.isPrimary = []             # bool
+        self.type = []                  # enums.AccountType
+        self.clientAccountType = []     # TODO: what is this?
+        
+        
+        self._debug_ = True             # debug TODO: make gloal debug
         
         # Get new token
-        self.__key = Token.Token()
-        self.__debug = False
-        
+        self.__key__ = Token.Token()      # local copy of token
+
+        #=======================================================================
+        # now that we have the token, get/set all account info
+        #=======================================================================
         # Get Account list as a JSON response from Questrade
-        __jsonResponse = self.__get_account_info__()
+        jsonResponse = self.__get_account_info__()
+        
+        if self._debug_ == True:
+            print(str(jsonResponse))
         
         # Set the class lists from JSON response
-        self.__set_account_lists__(__jsonResponse)
+        self.__set_account_lists__(jsonResponse)
         
         # PUBLIC Questrade userId
-        self.userId = __jsonResponse[qtD.Accounts.userid]
+        self.userId = jsonResponse[qtD.Accounts.userid]
         
         # PUBLIC quantity of accounts to help with iterations over data              
-        self.accountQty = len(__jsonResponse[qtD.Accounts.accounts])    
-    
-    
-    def __get_account_info__(self):
-        # set call url and header based on key and account url buildup from enums
-        __call_url = self.__key.api_server() + urls.root.version + urls.accounts.accounts
-        __header = self.__key.call_header()
-         
-        # make call for accounts and get response
-        __t = requests.get(__call_url, headers=__header)
-        __response = __t.json()
-    
-        # DEBUG
-        if self.__debug == True:
-            print('get_accounts() call_url: ' + str(__call_url))
-            print('get_accounts() headers: ' + str(__header))
-            print('get_account() json response header: ' + str(__t))
-            print('get_accounts() json response: ' + str(__response))
-            print('')
-       
-        return __response
-    
+        self.accountQty = len(jsonResponse[qtD.Accounts.accounts])    
     
     def refreshAccounts(self):
         # refresh accounts by calling the __init__ again, which will also get fresh token if needed
         self.__init__()
+   
+   
+    def __get_account_info__(self):
+        # set call url and header based on key and account url buildup from enums
+        call_url = self.__key__.api_server() + urls.root.version + urls.accounts.accounts
+        header = self.__key__.call_header()
+         
+        # make call for accounts and get response
+        t = requests.get(call_url, headers=header)
+        response = t.json()
+    
+        # DEBUG
+        if self._debug_ == True:
+            print('get_accounts() call_url: ' + str(call_url))
+            print('get_accounts() headers: ' + str(header))
+            print('get_account() json response header: ' + str(t))
+            print('get_accounts() json response: ' + str(response))
+            print('')
+       
+        return response
     
     
-    def __set_account_lists__(self, __jsonResponse):
+    def __set_account_lists__(self, jsonResponse):
         
         # iterate through each account in JSON response and add to list of attributes
-        for __entry in __jsonResponse[qtD.Accounts.accounts]:
-            self.status.append(__entry[qtD.Accounts.status])
-            self.isBilling.append(__entry[qtD.Accounts.isbilling])
-            self.number.append(__entry[qtD.Accounts.number])
-            self.isPrimary.append(__entry[qtD.Accounts.isprimary])
-            self.type.append(__entry[qtD.Accounts.type])
-            self.clientAccountType.append(__entry[qtD.Accounts.client_account_type])
-            self.name.append(__entry[qtD.Accounts.number])
+        for entry in jsonResponse[qtD.Accounts.accounts]:
+            self.status.append(entry[qtD.Accounts.status])
+            self.isBilling.append(entry[qtD.Accounts.isbilling])
+            self.number.append(entry[qtD.Accounts.number])
+            self.isPrimary.append(entry[qtD.Accounts.isprimary])
+            self.type.append(entry[qtD.Accounts.type])
+            self.clientAccountType.append(entry[qtD.Accounts.client_account_type])
 
 
 class AccountBalances():
@@ -88,42 +95,46 @@ class AccountBalances():
     def __init__(self, acctId):
         self.name = acctId
         
+        # each of these public items are a list as there are two currencies in each
         self.perCurrencyBalances = []
         self.combinedBalances = []
         self.sodPerCurrencyBalances = []
         self.sodCombinedBalances = []
 
-        self.__key = Token.Token()  
-        self.__debug = False
+        self.__key__ = Token.Token()  
+        self._debug_ = True
         
         self.__get_balances__()
         
         
     def __get_balances__(self):
         
-        __header = self.__key.call_header()
-        __call_url = self.__key.api_server() + urls.root.version + (urls.accounts.balances % self.name)
+        header = self.__key__.call_header()
+        call_url = (
+                    self.__key__.api_server() +             #api server name
+                    urls.root.version +                     #version
+                    (urls.accounts.balances % self.name)    #account balance url, with name of instance as account ID
+                    ) 
     
         # make call for accounts and get response
-        __t = requests.get(__call_url, headers=__header)
-        __response = __t.json()
+        t = requests.get(call_url, headers=header)
+        response = t.json()
         
-        if self.__debug == True:
-            print(str(__response))
+        if self._debug_ == True:
+            print(str(response))
         
-        for __entry in __response[qtD.Balances.perCurrencyBalances]:
-            self.perCurrencyBalances.append(__entry)
+        for entry in response[qtD.Balances.perCurrencyBalances]:
+            self.perCurrencyBalances.append(entry)
             
-        for __entry in __response[qtD.Balances.combinedBalances]:
-            self.combinedBalances.append(__entry)  
+        for entry in response[qtD.Balances.combinedBalances]:
+            self.combinedBalances.append(entry)  
         
-        for __entry in __response[qtD.Balances.sodPerCurrencyBalances]:
-            self.sodPerCurrencyBalances.append(__entry) 
+        for entry in response[qtD.Balances.sodPerCurrencyBalances]:
+            self.sodPerCurrencyBalances.append(entry) 
             
-        for __entry in __response[qtD.Balances.sodCombinedBalances]:
-            self.sodCombinedBalances.append(__entry)
+        for entry in response[qtD.Balances.sodCombinedBalances]:
+            self.sodCombinedBalances.append(entry)
    
-            
             
             
 # class Executions(List):
