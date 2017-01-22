@@ -11,6 +11,7 @@ import requests
 
 import dateutil.parser as dateparse
 import logging as log
+
 from src.questrade.enums import dictionary as dict
 from src.questrade.enums import enums
 from src.questrade.enums import urls
@@ -26,15 +27,15 @@ class Token(object):
         Constructor: sets the debug and class name.  First refresh of token is not done because when a value
         is accessed (via method) it will check if refresh is needed.
         '''
-        self.__debug = True                # Debug
-        self.__name = 'Questrade Token'     # Name of class
-        self.__expires_at = None            # setting private expires time to none
-        self.__token = None                 # set default token to none
+        self._debug_ = True                 # Debug
+        self.__name__ = 'Questrade Token'     # Name of class
+        self.__expires_at__ = None            # setting private expires time to none
+        self.__token__ = None                 # set default token to none
         
-        # in order to reduce the number of errors in time sensitive calls, we set an expiry buffer
+        # in order to reduce the number of errors in time sensitive calls, we set an expiry buffer (in seconds)
         # to allow time for processes after token check.  This is important for refresh of classes that may take a little
         # time.  This can be moved to a config file later?
-        self.__expiry_buffer = 60           
+        self.__expiry_buffer__ = 60           
  
     '''
     Below are the public methods of the class.  
@@ -42,35 +43,38 @@ class Token(object):
     as each time a call is made the values could have changed.
     ''' 
     def api_server(self):
-        if self.__is_token_expired__() == True:
-            self.__refresh_token__()
+        #server for get requests
+        
+        if self.__is_token_expired__() == True:     # check for expired token
+            self.__refresh_token__()                # refresh if true
             
-        return self.__token[enums.Token.api_server]
+        return self.__token__[enums.Token.api_server] # return api server from token
 
 
     def server_time(self):
-        if self.__is_token_expired__() == True:
-            self.__refresh_token__()
+        if self.__is_token_expired__() == True:     # check for expired token
+            self.__refresh_token__()                # refresh if true
     
         #set call_url for getting time
-        __call_url = self.__token[enums.Token.api_server] + urls.root.version + urls.accounts.time
+        call_url = self.__token__[enums.Token.api_server] + urls.root.version + urls.accounts.time
         
         #get header for call
-        __headers = {'Authorization': self.__token[enums.Token.token_type] + " " + self.__token[enums.Token.access_token]}
+        headers = {'Authorization': self.__token__[enums.Token.token_type] + " " + self.__token__[enums.Token.access_token]}
         
         #make call for time and get response
-        __t = requests.get(__call_url, headers = __headers)
-        __response = __t.json()
+        t = requests.get(call_url, headers = headers)
+        response = t.json()
        
         #return the time from json response
-        return __response[dict.Time.time]  
+        return response[dict.Time.time]  
     
     
     def call_header(self):
-        if self.__is_token_expired__() == True:
-            self.__refresh_token__()
+        if self.__is_token_expired__() == True:     # check for expired token
+            self.__refresh_token__()                # refresh if true
         
-        return {'Authorization': self.__token[enums.Token.token_type] + " " + self.__token[enums.Token.access_token]}  
+        # return a properly formed call header
+        return {'Authorization': self.__token__[enums.Token.token_type] + " " + self.__token__[enums.Token.access_token]}  
         
       
     '''
@@ -79,16 +83,16 @@ class Token(object):
     '''
     def __is_token_expired__(self):
         # If no expires at value, force refresh
-        if self.__expires_at == None:
+        if self.__expires_at__ == None:
             return True
         
         # Return boolean if we are past the expiry time
         else:
-            __localtz = pytz.timezone('Canada/Mountain')
-            __servertz = pytz.timezone('Canada/Eastern')
-            __local_date = __localtz.localize(datetime.datetime.now())
-            __local_date = __local_date.astimezone(__servertz)
-            return self.__expires_at < __local_date
+            localtz = pytz.timezone('Canada/Mountain')
+            servertz = pytz.timezone('Canada/Eastern')
+            local_date = localtz.localize(datetime.datetime.now())
+            local_date = local_date.astimezone(servertz)
+            return self.__expires_at__ < local_date
            
              
     def __refresh_token__(self, debug=False):
@@ -97,44 +101,46 @@ class Token(object):
         fullpath = userpath + '/' + enums.Token.token_file
         
         try:
-            with open(fullpath) as __f:
-                __jsonStr = __f.read()
-                self.__token = json.loads(__jsonStr)  
-                self.__expires_at = dateparse.parse(self.__token[enums.Token.expires_at])
+            with open(fullpath) as f:
+                jsonStr = f.read()
+                self.__token__ = json.loads(jsonStr)  
+                self.__expires_at__ = dateparse.parse(self.__token__[enums.Token.expires_at])
         
         # If we can't open it, then do something.
         except:
-            if self.__debug == True: 
+            if self._debug_ == True: 
                 print('get_token() IOError opening old token')
                 print(enums.Token.token_file)
-            self.__token = None
-            return self.__token
+            self.__token__ = None
+            return self.__token__
 
         # Now that we've loaded the Token JSON file, check to see if it is expired.  
         # If not, return a valid token
         if self.__is_token_expired__() == False:
-            return self.__token
+            return self.__token__
         
         # If it was expired, then we need to use the refresh key to get a new token.
         else:
             
-            if self.__debug == True:
+            if self._debug_ == True:
                 print('get_token() new token requested or required')
                 
-            __call_url = urls.root.token_url + self.__token[enums.Token.refresh_token]
+            call_url = urls.root.token_url + self.__token__[enums.Token.refresh_token]
             
-            __r = requests.get(__call_url)
-            self.__token = __r.json()
+            r = requests.get(call_url)
+            self.__token__ = r.json()
             
-            __my_time = dateparse.parse(self.__server_time__()) + datetime.timedelta(seconds = self.__token[enums.Token.expires_in] - self.__expiry_buffer)            
-            self.__token[enums.Token.expires_at] = str(__my_time)
+            # expire time is server time, pluss expires_in delta, minus buffer
+            __expire_time__ = dateparse.parse(self.__server_time__()) + datetime.timedelta(seconds = self.__token__[enums.Token.expires_in] - self.__expiry_buffer__)
+                        
+            self.__token__[enums.Token.expires_at] = str(__expire_time__)
             
-            with open(fullpath, 'w') as __outfile:
-                json.dump(self.__token, __outfile, indent=4, sort_keys=True, separators=(',', ':'))  
+            with open(fullpath, 'w') as outfile:
+                json.dump(self.__token__, outfile, indent=4, sort_keys=True, separators=(',', ':'))  
         
-            log.warning('get_token() returned new token to ' +  str(__r) + ' - ' + str(self.__token))
+            log.warning('get_token() returned new token to ' +  str(r) + ' - ' + str(self.__token__))
             
-            return self.__token
+            return self.__token__
     
     
     def __delete_token__(self):
@@ -147,17 +153,17 @@ class Token(object):
         For method use only as this bypasses the need to check for expired token.
         '''
         #set call_url for getting time
-        __call_url = self.__token[enums.Token.api_server] + urls.root.version + urls.accounts.time
+        call_url = self.__token__[enums.Token.api_server] + urls.root.version + urls.accounts.time
         
         #get header for call
-        __headers = {'Authorization': self.__token[enums.Token.token_type] + " " + self.__token[enums.Token.access_token]}
+        headers = {'Authorization': self.__token__[enums.Token.token_type] + " " + self.__token__[enums.Token.access_token]}
         
         #make call for time and get response
-        __t = requests.get(__call_url, headers = __headers)
-        __response = __t.json()
+        t = requests.get(call_url, headers = headers)
+        response = t.json()
        
         #return the time from json response
-        return __response[dict.Time.time]  
+        return response[dict.Time.time]  
     
     
    
