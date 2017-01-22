@@ -24,11 +24,11 @@ class Quotes(object):
         Constructor
         '''
         self.quoteList = []  # initialize list for holding quotes
-        self._debug = False  # DEBUG
+        self._debug_ = False  # DEBUG
         
-        self._symbol_id_list = symbolIdList  # pass along the symbol list for use in this class
+        self._symbol_id_list_ = symbolIdList  # pass along the symbol list for use in this class
         
-        self.__key = Token.Token()  # get a valid token
+        self.__key__ = Token.Token()  # get a valid token
         
         # Get quote list 
         self._get_market_quote_()  # get the quote for the symbols passed
@@ -38,49 +38,49 @@ class Quotes(object):
         # called when we want a refresh of existing symbol list
         self.quoteList = []  # empty quote list
         
-        self.__key = Token.Token()  # get refreshed token
+        self.__key__ = Token.Token()  # get refreshed token
         
         self._get_market_quote_()  # refresh quotes
         
     
     def _get_market_quote_(self):
         
-        __csvSymbols = ''  # empty string to hold csv'd list of symbols for params
-        __separator = ''  # initialize csv adder to blank for symbol list
-        __counter = 0  # counter for params builder - add a comma or not?
+        csvSymbols = ''  # empty string to hold csv'd list of symbols for params
+        separator = ''  # initialize csv adder to blank for symbol list
+        counter = 0  # counter for params builder - add a comma or not?
         
         # get the call header and url
-        __header = self.__key.call_header()
-        __call_url = self.__key.api_server() + urls.root.version + (urls.markets.quotes % '')
+        header = self.__key__.call_header()
+        call_url = self.__key__.api_server() + urls.root.version + (urls.markets.quotes % '')
         
         # created concatenated csv list to pass into params
-        for __symbol in self._symbol_id_list:
-            if __counter > 0:
-                __separator = ','
-            __csvSymbols = __csvSymbols + __separator + __symbol
-            __counter = __counter + 1
+        for symbol in self._symbol_id_list_:
+            if counter > 0:
+                separator = ','
+            csvSymbols = csvSymbols + separator + symbol
+            counter = counter + 1
             
         # build params from csv symbol list
-        __params = {qtD.Quotes.ids: __csvSymbols}           
+        params = {qtD.Quotes.ids: csvSymbols}           
     
         # make call for accounts and get response
-        __t = requests.get(__call_url, headers=__header, params=__params)
-        __response = __t.json()
+        t = requests.get(call_url, headers=header, params=params)
+        response = t.json()
 
         # get market calls remaining, and reset time, and log
-        unix_timestamp = float(__t.headers[qtD.ResponseHeader.XRateLimitReset])
-        __servertz = pytz.timezone('Canada/Eastern')
-        (datetime.fromtimestamp(unix_timestamp, __servertz).isoformat())
+        unix_timestamp = float(t.headers[qtD.ResponseHeader.XRateLimitReset])
+        servertz = pytz.timezone('Canada/Eastern')
+        (datetime.fromtimestamp(unix_timestamp, servertz).isoformat())
         
-        log.warning('Market Data Limit Remaining:' + str(__t.headers[qtD.ResponseHeader.XRateLimitRemaining]) + 
-                    ' resetting at ' + str(datetime.fromtimestamp(unix_timestamp, __servertz).isoformat()))
+        log.warning('Market Data Limit Remaining:' + str(t.headers[qtD.ResponseHeader.XRateLimitRemaining]) + 
+                    ' resetting at ' + str(datetime.fromtimestamp(unix_timestamp, servertz).isoformat()))
         
-        __time = self.__key.server_time()
+        time = self.__key__.server_time()
         
         # for each quote, add on a retrieve time, and add to quote list
-        for __quote in __response[qtD.Quotes.quotes]:
-            __quote[qtD.Time.retrieveTime] = __time
-            self.quoteList.append(__quote)
+        for quote in response[qtD.Quotes.quotes]:
+            quote[qtD.Time.retrieveTime] = time
+            self.quoteList.append(quote)
         
         
 class Symbol(object):
@@ -91,9 +91,9 @@ class Symbol(object):
         '''
         
         self.symbolList = []  # initialize list for holding quotes
-        self._debug = False  # DEBUG
-        self.__key = Token.Token()  # get a valid token
-        self._symbol_id_list = symbolIdList  # pass along the symbol list for use in this class
+        self._debug_ = False  # DEBUG
+        self.__key__ = Token.Token()  # get a valid token
+        self._symbol_id_list_ = symbolIdList  # pass along the symbol list for use in this class
         
         # Get quote list 
         self.__get_symbol_info__()  # get the quote for the symbols passed
@@ -101,44 +101,44 @@ class Symbol(object):
         
     def __get_symbol_info__(self):
         
-        __csvSymbols = ''  # empty string to hold csv'd list of symbols for params
-        __separator = ''  # initialize csv adder to blank for symbol list
-        __counter = 0  # counter for params builder - add a comma or not?
+        csvSymbols = ''  # empty string to hold csv'd list of symbols for params
+        separator = ''  # initialize csv adder to blank for symbol list
+        counter = 0  # counter for params builder - add a comma or not?
         
         # get the call header and url
-        __header = self.__key.call_header()
-        __call_url = self.__key.api_server() + urls.root.version + (urls.markets.symbols % '')
+        header = self.__key__.call_header()
+        call_url = self.__key__.api_server() + urls.root.version + (urls.markets.symbols % '')
         
         # created concatenated csv list to pass into params
-        for __symbol in self._symbol_id_list:
-            if __counter > 0:
-                __separator = ','
-            __csvSymbols = __csvSymbols + __separator + __symbol
-            __counter = __counter + 1
+        for symbol in self._symbol_id_list_:
+            if counter > 0:
+                separator = ','
+            csvSymbols = csvSymbols + separator + symbol
+            counter = counter + 1
             
         # build params from csv symbol list
-        if type(self._symbol_id_list[0]) == int:
-            __params = {qtD.Symbols.ids: __csvSymbols}  
+        if type(self._symbol_id_list_[0]) == int:
+            params = {qtD.Symbols.ids: csvSymbols}  
             print('integer passed')
-        if type(self._symbol_id_list[0]) == str:
-            __params = {qtD.Symbols.names: __csvSymbols}           
+        if type(self._symbol_id_list_[0]) == str:
+            params = {qtD.Symbols.names: csvSymbols}           
             print('string passed')
             
         # make call for accounts and get response
-        __t = requests.get(__call_url, headers=__header, params=__params)
-        __response = __t.json()
+        t = requests.get(call_url, headers=header, params=params)
+        response = t.json()
         
         # get market calls remaining, and reset time, and log
-        unix_timestamp = float(__t.headers[qtD.ResponseHeader.XRateLimitReset])
-        __servertz = pytz.timezone('Canada/Eastern')
-        (datetime.fromtimestamp(unix_timestamp, __servertz).isoformat())
+        unix_timestamp = float(t.headers[qtD.ResponseHeader.XRateLimitReset])
+        servertz = pytz.timezone('Canada/Eastern')
+        (datetime.fromtimestamp(unix_timestamp, servertz).isoformat())
         
-        log.warning('Account Limit Remaining:' + str(__t.headers[qtD.ResponseHeader.XRateLimitRemaining]) + 
-                    ' resetting at ' + str(datetime.fromtimestamp(unix_timestamp, __servertz).isoformat()))
+        log.warning('Account Limit Remaining:' + str(t.headers[qtD.ResponseHeader.XRateLimitRemaining]) + 
+                    ' resetting at ' + str(datetime.fromtimestamp(unix_timestamp, servertz).isoformat()))
         
-        __time = self.__key.server_time()
+        time = self.__key__.server_time()
         
         # for each quote, add on a retrieve time, and add to quote list
-        for __symbol in __response[qtD.Symbols.symbols]:
-            __symbol[qtD.Time.retrieveTime] = __time
-            self.symbolList.append(__symbol)
+        for symbol in response[qtD.Symbols.symbols]:
+            symbol[qtD.Time.retrieveTime] = time
+            self.symbolList.append(symbol)
